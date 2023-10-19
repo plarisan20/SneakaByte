@@ -109,28 +109,29 @@ public class ShoeOptionsController {
 		viewModel.addAttribute("loggedUser", userServ.findById(userID));
 				
 		// Grab this Shoe by ID
-		viewModel.addAttribute("thisShoe", shoeoptionsServ.getByIdShoeCreator(id));
+		viewModel.addAttribute("thisShoeListing", shoeoptionsServ.getByIdShoeCreator(id));
 		return "editlisting.jsp";
 	}
 	
-	// needed when EDITING the FORM
+	// NEEDS TO BE THE SAME WITH THE ACTION OF THE FORM OF DB
 	@PutMapping("/itemlisting/editDB/{id}")
-	public String editShoeListingDB(@Valid @ModelAttribute("thisShoeListing") ShoeOptions thisShoeListing,
-			Model viewModel, @PathVariable Long id,
-			BindingResult result, HttpSession session) {
-		if(session.getAttribute("userId") == null) {
-			return "redirect:/";
-		}
-		// if there is error, take it back to the edit plan, else redirect checkoutplan
-		if (result.hasErrors()) {
-			viewModel.addAttribute("thisShoeListing", shoeoptionsServ.getByIdShoeCreator(id).getName());
-			return "editlisting.jsp";
-		} else {
-			ShoeOptions updatedShoeOption = shoeoptionsServ.createShoe(thisShoeListing);
-			return "redirect:/itemlisting/account/" + updatedShoeOption.getId();
-		}
-// I'm stuck with this
+	public String editShoeListingDB(@PathVariable Long id, @Valid @ModelAttribute("thisShoeListing") ShoeOptions thisShoeListing, Model viewModel, BindingResult result, HttpSession session) {
+	    if (session.getAttribute("userId") == null) {
+	        return "redirect:/";
+	    }
+	    if (result.hasErrors()) {
+	        // Return to the edit form with the same model attributes
+	        viewModel.addAttribute("thisShoeListing", shoeoptionsServ.getByIdShoeCreator(id));
+	        return "editlisting.jsp";
+	    } else {
+	        // Update the shoe listing and redirect to the account page
+	        ShoeOptions updatedShoeOption = shoeoptionsServ.createShoe(thisShoeListing);
+	        return "redirect:/itemlisting/account/" + updatedShoeOption.getId();
+	    }
 	}
+
+// I'm stuck with this
+	
 	
 	// DELETE METHOD
 	@DeleteMapping("/delete/{id}")

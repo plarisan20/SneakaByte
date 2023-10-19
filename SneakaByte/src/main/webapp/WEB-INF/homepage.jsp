@@ -27,7 +27,7 @@
 					<li><a href="#">About Us</a></li>
 					<!-- Shoe Selection -->
 					<li><a href="/itemlisting">Sell a Pair</a></li>
-					<li><a href="/itemlisting/account/"${loggedUser.id}">Buy a Pair</a></li>
+					<li><a href="/itemlisting/account/"${thisShoe.id}">Buy a Pair</a></li>
 					<!-- Shoe Selection -->
 					<!-- Add info what you want to add later -->
 					<li><div> <a href="/logout">Log out</a></div></li>

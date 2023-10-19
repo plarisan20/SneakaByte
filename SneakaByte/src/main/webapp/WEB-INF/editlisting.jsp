@@ -15,7 +15,8 @@
 <body>
 	<!-- EDITING SHOE LISTING -->
 	<div>
-		<form:form action="/itemlisting/edit/${thisShoe.id }" method="POST" modelAttribute="thisShoeListing">
+		<!-- The action needs to be the same with putMapping so it would work -->
+		<form:form action="/itemlisting/editDB/${thisShoeListing.id }" method="POST" modelAttribute="thisShoeListing">
 			<!--  this is needed in order to use PutMapping -->
 			<input type="hidden" name="_method" value="PUT"/>			
 
@@ -78,7 +79,7 @@
 			<!-- End of the right article -->
 		</form:form>
 		
-			<a href="/itemlisting/account/${thisShoe.id}">Cancel</a>
+			<a href="/itemlisting/account/${thisShoeListing.id}">Cancel</a>
 	</div>
 </body>
 </html>

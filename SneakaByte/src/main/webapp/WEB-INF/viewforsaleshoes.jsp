@@ -11,63 +11,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Buy Shoes</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<div>
+<div class="container-*" style="background-color: white;"> 
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+  <div class="container-fluid" style="overflow: hidden;
+  background-color: dimgrey; position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 1px solid black">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse show" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/" style="color: white">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard" style="color: white">About Us</a>
+        </li>
+        <li>
+        		<a class="navbar-brand" href="/dashboard" style= "font-size: 2.5em; color: DarkOrange; margin-left: 425px">SneakaByte</a>
+        	</li>
+      </ul>
+      <c:if test = "${userId == null}">
+      <a href="/login" class="btn btn-outline-light" style="margin-right: 5px">Log In</a>
+      <a href="/register" class="btn btn-outline-light">Register</a>  
+      </c:if>
+      <c:if test="${userId != null}">
+      <a href="/logout" class="btn btn-danger">Log Out</a>
+      </c:if>
+      </div>
+  </div>
+</nav>
+	<div class = "container-*" style = "margin-top:50px">
 		<div>
-			<!-- Header -->
-			<h2>View shoe options for sale</h2>
-			<!-- Add something if you wnat to add later on -->
+			<h2 style="font-size:2.5em"><c:out value="${thisShoe.name}"></c:out></h2>
+			<h3>$<c:out value="${ thisShoe.price}"/></h3>
+			<p>Seller: <c:out value="${loggedUser.userName}"/> </p>
 		</div>
 	<hr>
 		<div>
-			<!-- Left Article -->
-			<div>
-				<h3><c:out value="${ thisShoe.name}"/></h3>
-				<p>$<c:out value="${ thisShoe.price }"/></p>
-				
-				
-				<!-- Need to add the picture later on -->
-			</div>
-			<!-- End of left article -->
-			
-			
-			<!-- Right Article -->
 			<div>
 				<p>Color: <c:out value="${ thisShoe.color}"/></p>
-				<p>Retail Price: <c:out value="${ thisShoe.retailprice}"/></p>
-				<p>Condition: <c:out value="${ thisShoe.description}"/></p>
+				<p>Retail Price: $<c:out value="${ thisShoe.retailprice}"/></p>
+				<p>Description: <c:out value="${ thisShoe.description}"/></p>
 				<p>Release Year: <c:out value="${ thisShoe.releaseyear}"/></p>
 				
-				<!-- Add to cart option later on -->
-				
-				<!-- this is for the name of the Account User -->
-				<p>Seller: <c:out value="${loggedUser.userName}"/> </p>
 			</div>
-			<!-- End of right article -->
-			
-			<hr>
-			
-			<!-- Only the user that created this could see this method -->
 			<c:if test="${loggedUser.id == thisShoe.shoeCreator.id }" >
 				<div>
-				<!-- EDIT -->
 					<div>
-						<a href="/itemlisting/edit/${thisShoe.id}">Edit</a>
-					</div>
-					<div>
-						<a href="/homepage">Cancel</a>
-					</div>
-					
-				<!-- DELETE METHOD -->
+						<a href="/itemlisting/edit/${thisShoe.id}" class="btn btn-primary">Edit</a> <br>
+					</div> <br>
 					<div>
 						<form method="post" action="/delete/${thisShoe.id}">
-							<!-- set it up like this in order for delete button to work 
-							<input type="hidden" name="_method" value="delete"/>
-							 -->
 							 <div>
 								<input type="hidden" name="_method" value="delete"/>
-								<input type="submit" value="Delete"/>
+								<input type="submit" class="btn btn-danger" value="Delete"/>
 							 </div>
 			
 						</form>

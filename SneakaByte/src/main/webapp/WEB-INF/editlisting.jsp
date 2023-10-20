@@ -11,75 +11,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Edit Shoe Listing</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
 <body>
+	<div>
 	<!-- EDITING SHOE LISTING -->
 	<div>
-		<!-- The action needs to be the same with putMapping so it would work -->
 		<form:form action="/itemlisting/editDB/${thisShoeListing.id }" method="POST" modelAttribute="thisShoeListing">
-			<!--  this is needed in order to use PutMapping -->
 			<input type="hidden" name="_method" value="PUT"/>			
-
-			<!-- Left article of the div -->
 			<div>
-				<h3>Create Listing</h3>
-				
-				<!-- Create an image to upload to the page -->
-				
-			
+				<h3>Update Listing</h3>
 			</div>
-			<!-- End of the left article -->
-			
-			
-			<!-- Right article of the div -->
 			<div>
-				<div>
-			        <form:label path="name">Name:</form:label>
-			        <form:errors path="name"></form:errors>
-			        <form:input path="name"/>
+			        <form:label path="name">Name:</form:label> <br>
+			        <form:errors path="name"></form:errors> <br>
+			        <form:input path="name" class="form-floating" style="width: 300px;"/> <br>
 			    </div>
 			    
 			    <div>
-			        <form:label path="price">Price:</form:label>
-			        <form:errors path="price"></form:errors>
-			        <form:input path="price"/>
+			        <form:label path="price">Price:</form:label> <br>
+			        <form:errors path="price"></form:errors> <br>
+			        <form:input path="price" class="form-floating" style="width: 300px;"/> <br>
 			    </div>
 			    
 			    <div>
-			        <form:label path="retailprice">Retail Price:</form:label>
-			        <form:errors path="retailprice"></form:errors>
-			        <form:input path="retailprice"/>
+			        <form:label path="retailprice">Retail Price:</form:label> <br>
+			        <form:errors path="retailprice"></form:errors> <br>
+			        <form:input path="retailprice" class="form-floating" style="width: 300px;"/> <br>
 			    </div>
 			    
 			    <div>
-			        <form:label path="releaseyear">Release Year:</form:label>
-			        <form:errors path="releaseyear"></form:errors>
-			        <form:input path="releaseyear"/>
+			        <form:label path="releaseyear">Release Year:</form:label> <br>
+			        <form:errors path="releaseyear"></form:errors> <br>
+			        <form:input path="releaseyear" class="form-floating" style="width: 300px;"/> <br>
 			    </div>
 			    
 			    <div>
-			        <form:label path="color">Color:</form:label>
-			        <form:errors path="color"></form:errors>
-			        <form:input path="color"/>
+			        <form:label path="color">Color:</form:label> <br>
+			        <form:errors path="color"></form:errors> <br>
+			        <form:input path="color" class="form-floating" style="width: 300px;"/> <br>
 			    </div>
 			    	
 			    <div>
-			        <form:label path="description">Condition:</form:label>
-			        <form:errors path="description"></form:errors>
-			        <form:input path="description"/>
-			    </div>
-			    
-			    
-	<!-- this is needed in order to know in the form that this is the user that is log in and passing the form -->		
+			        <form:label path="description">Description:</form:label> <br>
+			        <form:errors path="description"></form:errors> <br>
+			        <form:input path="description" class="form-floating" style="width: 300px;"/> <br>
+			    </div> <br>
 				<form:input type="hidden" path="shoeCreator" value="${loggedUser.id}"/>
 				
 			<!-- After Submitting, this would go straight to, viewforsaleshoes.jsp -->
-				<input type="submit" value="Edit Listing">
+				<input type="submit" class="btn btn-primary" value="Edit Listing">
 			</div>
 			<!-- End of the right article -->
 		</form:form>
 		
-			<a href="/itemlisting/account/${thisShoeListing.id}">Cancel</a>
+			<a href="/itemlisting/account/${thisShoe.id}" class="btn btn-danger">Cancel</a>
 	</div>
 </body>
 </html>
